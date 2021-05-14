@@ -69,6 +69,7 @@ targets:
       - target: WakeOnLanService
       - target: WOLResources
       - target: WOLUIComponents
+      - target: AboutScreen
 
     settings:
       base:
@@ -226,6 +227,19 @@ targets:
     dependencies:
       - target: CoreDataService
       - target: WOLResources
+    sources:
+      - path: "Wake on LAN/Modules/${frameworkName}"
+
+  AboutScreen:
+    templates:
+      - Framework
+    templateAttributes:
+      frameworkName: AboutScreen
+    dependencies:
+      - target: WOLResources
+      - target: WOLUIComponents
+      - target: SharedProtocols
+      - package: SnapKit
     sources:
       - path: "Wake on LAN/Modules/${frameworkName}"
 
