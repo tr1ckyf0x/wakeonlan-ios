@@ -49,6 +49,8 @@ extension AboutHeaderTableCell {
 // MARK: - Private methods
 private extension AboutHeaderTableCell {
     func setupViews() {
+        contentView.backgroundColor = WOLResources.Asset.Colors.soft.color
+
         contentView.addSubview(appNameLabel)
         contentView.addSubview(appVersionLabel)
 
@@ -60,7 +62,7 @@ private extension AboutHeaderTableCell {
         appVersionLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(appNameLabel.snp.bottom).offset(8)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(16)
         }
     }
 }

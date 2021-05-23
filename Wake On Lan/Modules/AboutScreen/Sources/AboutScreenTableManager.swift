@@ -39,12 +39,12 @@ extension AboutScreenTableManager: UITableViewDataSource {
             headerCell?.configure(appName: appName, appVersion: appVersion)
 
             cell = headerCell
-            
+
         case let .menuButton(title, action):
             let menuButtonCell = tableView.dequeueReusableCell(withIdentifier: "\(MenuButtonTableCell.self)",
                                                                for: indexPath) as? MenuButtonTableCell
             menuButtonCell?.configure(title: title, action: action)
-            
+
             cell = menuButtonCell
         }
 

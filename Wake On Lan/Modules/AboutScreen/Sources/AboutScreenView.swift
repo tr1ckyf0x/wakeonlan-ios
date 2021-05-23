@@ -48,7 +48,9 @@ final class AboutScreenView: UIView {
         let tableView = UITableView()
         tableView.register(AboutHeaderTableCell.self, forCellReuseIdentifier: "\(AboutHeaderTableCell.self)")
         tableView.register(MenuButtonTableCell.self, forCellReuseIdentifier: "\(MenuButtonTableCell.self)")
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.backgroundColor = WOLResources.Asset.Colors.soft.color
         return tableView
     }()
 

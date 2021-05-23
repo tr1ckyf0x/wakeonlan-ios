@@ -57,11 +57,19 @@ extension MenuButtonTableCell {
 // MARK: - Private methods
 private extension MenuButtonTableCell {
     func setupViews() {
+        contentView.backgroundColor = WOLResources.Asset.Colors.soft.color
+
         contentView.addSubview(buttonBodyView)
 
         buttonBodyView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(16)
             make.top.bottom.equalToSuperview().inset(8)
+        }
+
+        buttonTitleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.top.equalToSuperview().inset(13)
+            make.bottom.equalToSuperview().inset(14)
         }
     }
 
