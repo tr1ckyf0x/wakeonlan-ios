@@ -239,6 +239,7 @@ targets:
       - target: WOLResources
       - target: WOLUIComponents
       - target: SharedProtocols
+      - target: SharedExtensions
       - package: SnapKit
     sources:
       - path: "Wake on LAN/Modules/${frameworkName}"

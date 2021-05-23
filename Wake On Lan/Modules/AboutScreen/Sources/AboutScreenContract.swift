@@ -23,6 +23,7 @@ protocol AboutScreenViewInput: AnyObject {
 }
 
 protocol AboutScreenInteractorInput: AnyObject {
+    var appVersion: String? { get }
 }
 
 protocol AboutScreenInteractorOutput: AnyObject {

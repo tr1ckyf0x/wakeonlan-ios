@@ -32,13 +32,20 @@ extension AboutScreenTableManager: UITableViewDataSource {
         let model = sections[indexPath.section].items[indexPath.row]
 
         switch model {
-        case let .header(appVersion):
+        case let .header(appName, appVersion):
             let headerCell = tableView.dequeueReusableCell(
                 withIdentifier: "\(AboutHeaderTableCell.self)",
                 for: indexPath) as? AboutHeaderTableCell
-            headerCell?.configure(appName: "", appVersion: appVersion)
+            headerCell?.configure(appName: appName, appVersion: appVersion)
 
             cell = headerCell
+            
+        case let .menuButton(title, action):
+            let menuButtonCell = tableView.dequeueReusableCell(withIdentifier: "\(MenuButtonTableCell.self)",
+                                                               for: indexPath) as? MenuButtonTableCell
+            menuButtonCell?.configure(title: title, action: action)
+            
+            cell = menuButtonCell
         }
 
         guard let unwrappedCell = cell else { fatalError("Unknown cell identifier") }

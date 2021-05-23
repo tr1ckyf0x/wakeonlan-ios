@@ -47,6 +47,7 @@ final class AboutScreenView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.register(AboutHeaderTableCell.self, forCellReuseIdentifier: "\(AboutHeaderTableCell.self)")
+        tableView.register(MenuButtonTableCell.self, forCellReuseIdentifier: "\(MenuButtonTableCell.self)")
         tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()

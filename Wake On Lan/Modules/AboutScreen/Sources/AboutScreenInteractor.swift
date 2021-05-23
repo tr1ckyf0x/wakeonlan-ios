@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SharedExtensions
 
 final class AboutScreenInteractor {
 
@@ -16,4 +17,7 @@ final class AboutScreenInteractor {
 
 // MARK: - AboutScreenInteractorInput
 extension AboutScreenInteractor: AboutScreenInteractorInput {
+    var appVersion: String? {
+        Bundle.main.appVersion
+    }
 }

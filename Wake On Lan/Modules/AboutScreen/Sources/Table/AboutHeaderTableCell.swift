@@ -40,9 +40,9 @@ final class AboutHeaderTableCell: UITableViewCell {
 
 // MARK: - Internal methods
 extension AboutHeaderTableCell {
-    func configure(appName: String, appVersion: String) {
+    func configure(appName: String, appVersion: String?) {
         appNameLabel.text = appName
-        appVersionLabel.text = appVersion
+        appVersionLabel.text = "\(WOLResources.L10n.AboutScreen.version) \(appVersion ?? .empty)"
     }
 }
 

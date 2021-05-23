@@ -8,6 +8,7 @@
 
 import Foundation
 import SharedProtocols
+import WOLResources
 
 final class AboutScreenPresenter<Router: AboutScreenRouterProtocol> {
 
@@ -24,8 +25,13 @@ final class AboutScreenPresenter<Router: AboutScreenRouterProtocol> {
 // MARK: - Private methods
 private extension AboutScreenPresenter {
     private func setupSectionModels() {
-        let appVersionItem = AboutScreenSectionModel.Item.header(appVersion: "5")
-        tableManager?.sections = [.mainSection(content: [appVersionItem], header: nil, footer: nil)]
+        let appVersionItem = AboutScreenSectionModel.Item.header(appName: WOLResources.L10n.AboutScreen.applicationName,
+                                                                 appVersion: interactor?.appVersion)
+        let rateAppItem = AboutScreenSectionItem.menuButton(title: "Test", action: {})
+        tableManager?.sections = [.mainSection(content: [appVersionItem,
+                                                         rateAppItem],
+                                               header: nil,
+                                               footer: nil)]
     }
 }
 

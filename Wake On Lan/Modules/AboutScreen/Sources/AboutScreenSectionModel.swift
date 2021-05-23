@@ -9,7 +9,8 @@
 import Foundation
 
 enum AboutScreenSectionItem {
-    case header(appVersion: String)
+    case header(appName: String, appVersion: String?)
+    case menuButton(title: String, action: () -> Void)
 }
 
 enum AboutScreenSectionModel {
