@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import SharedProtocols
+import WOLResources
 
 protocol AboutScreenViewOutput: AnyObject {
 
@@ -19,15 +19,12 @@ protocol AboutScreenViewOutput: AnyObject {
 
 }
 
-protocol AboutScreenViewInput: AnyObject {
-}
+protocol AboutScreenViewInput: AnyObject { }
 
 protocol AboutScreenInteractorInput: AnyObject {
-    var appVersion: String? { get }
+    func fetchBundleInfo()
 }
 
 protocol AboutScreenInteractorOutput: AnyObject {
-}
-
-protocol AboutScreenRouterProtocol: AnyObject, Router where ViewControllerType == AboutScreenViewController {
+    func interactor(_: AboutScreenInteractorInput, didFetchBundleInfo bundleInfo: BundleInfo)
 }

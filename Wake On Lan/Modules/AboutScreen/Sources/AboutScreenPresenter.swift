@@ -10,11 +10,11 @@ import Foundation
 import SharedProtocols
 import WOLResources
 
-final class AboutScreenPresenter<Router: AboutScreenRouterProtocol> {
+final class AboutScreenPresenter {
 
     weak var view: AboutScreenViewInput?
 
-    var router: Router?
+    var router: AboutScreenRouter?
 
     var interactor: AboutScreenInteractorInput?
 
@@ -22,24 +22,12 @@ final class AboutScreenPresenter<Router: AboutScreenRouterProtocol> {
 
 }
 
-// MARK: - Private methods
-private extension AboutScreenPresenter {
-    private func setupSectionModels() {
-        let appVersionItem = AboutScreenSectionModel.Item.header(appName: WOLResources.L10n.AboutScreen.applicationName,
-                                                                 appVersion: interactor?.appVersion)
-        let rateAppItem = AboutScreenSectionItem.menuButton(title: "Test", action: {})
-        tableManager?.sections = [.mainSection(content: [appVersionItem,
-                                                         rateAppItem],
-                                               header: nil,
-                                               footer: nil)]
-    }
-}
-
 // MARK: - AboutScreenViewOutput
+
 extension AboutScreenPresenter: AboutScreenViewOutput {
 
     func viewDidLoad(_ view: AboutScreenViewInput) {
-        setupSectionModels()
+        interactor?.fetchBundleInfo()
     }
 
     func viewDidPressBackButton(_ view: AboutScreenViewInput) {
@@ -49,5 +37,31 @@ extension AboutScreenPresenter: AboutScreenViewOutput {
 }
 
 // MARK: - AboutScreenInteractorOutput
+
 extension AboutScreenPresenter: AboutScreenInteractorOutput {
+
+    func interactor(_: AboutScreenInteractorInput, didFetchBundleInfo bundleInfo: BundleInfo) {
+        tableManager?.sections = makeSections(from: bundleInfo)
+    }
+
+}
+
+// MARK: - Private methods
+
+private extension AboutScreenPresenter {
+
+    func makeSections(from bundleInfo: BundleInfo) -> [AboutScreenSectionModel] {
+        [
+            .mainSection(
+                content:
+                    [
+                        .header(appName: bundleInfo.displayName, appVersion: bundleInfo.version),
+                        .menuButton(title: "Test", action: { })
+                    ],
+                header: nil,
+                footer: nil
+            )
+        ]
+    }
+
 }

@@ -14,16 +14,15 @@ final class AboutHeaderTableCell: UITableViewCell {
 
     private lazy var appNameLabel: UILabel = {
         let label = UILabel()
-        label.text = WOLResources.L10n.AboutScreen.applicationName
-        label.font = WOLResources.FontFamily.Roboto.medium.font(size: 36)
-        label.textColor = WOLResources.Asset.Colors.gray900.color
+        label.font = FontFamily.Roboto.medium.font(size: 36)
+        label.textColor = Asset.Colors.gray900.color
         return label
     }()
 
     private lazy var appVersionLabel: UILabel = {
         let label = UILabel()
-        label.font = WOLResources.FontFamily.Roboto.medium.font(size: 12)
-        label.textColor = WOLResources.Asset.Colors.gray.color
+        label.font = FontFamily.Roboto.medium.font(size: 12)
+        label.textColor = Asset.Colors.gray.color
         return label
     }()
 
@@ -39,14 +38,16 @@ final class AboutHeaderTableCell: UITableViewCell {
 }
 
 // MARK: - Internal methods
+
 extension AboutHeaderTableCell {
     func configure(appName: String, appVersion: String?) {
         appNameLabel.text = appName
-        appVersionLabel.text = "\(WOLResources.L10n.AboutScreen.version) \(appVersion ?? .empty)"
+        appVersionLabel.text = "\(L10n.AboutScreen.version) \(appVersion ?? .empty)"
     }
 }
 
 // MARK: - Private methods
+
 private extension AboutHeaderTableCell {
     func setupViews() {
         contentView.backgroundColor = WOLResources.Asset.Colors.soft.color

@@ -28,29 +28,26 @@ extension AboutScreenTableManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell?
         let model = sections[indexPath.section].items[indexPath.row]
+        return {
+            switch model {
+                case let .header(appName, appVersion):
+                let headerCell = tableView.dequeueReusableCell(
+                    withIdentifier: "\(AboutHeaderTableCell.self)",
+                    for: indexPath
+                ) as? AboutHeaderTableCell
+                headerCell?.configure(appName: appName, appVersion: appVersion)
+                return headerCell
 
-        switch model {
-        case let .header(appName, appVersion):
-            let headerCell = tableView.dequeueReusableCell(
-                withIdentifier: "\(AboutHeaderTableCell.self)",
-                for: indexPath) as? AboutHeaderTableCell
-            headerCell?.configure(appName: appName, appVersion: appVersion)
-
-            cell = headerCell
-
-        case let .menuButton(title, action):
-            let menuButtonCell = tableView.dequeueReusableCell(withIdentifier: "\(MenuButtonTableCell.self)",
-                                                               for: indexPath) as? MenuButtonTableCell
-            menuButtonCell?.configure(title: title, action: action)
-
-            cell = menuButtonCell
-        }
-
-        guard let unwrappedCell = cell else { fatalError("Unknown cell identifier") }
-
-        return unwrappedCell
+            case let .menuButton(title, action):
+                let menuButtonCell = tableView.dequeueReusableCell(
+                    withIdentifier: "\(MenuButtonTableCell.self)",
+                    for: indexPath
+                ) as? MenuButtonTableCell
+                menuButtonCell?.configure(title: title, action: action)
+                return menuButtonCell
+            }
+        }() ?? .init()
     }
 
 }

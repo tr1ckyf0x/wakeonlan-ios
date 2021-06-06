@@ -6,10 +6,10 @@
 //  Copyright © 2021 Владислав Лисянский. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 import WOLUIComponents
 import WOLResources
-import SnapKit
 
 protocol AboutScreenViewDelegate: AnyObject {
     func aboutScreenViewDidPressBackButton(_ view: AboutScreenView)
@@ -21,6 +21,10 @@ final class AboutScreenView: UIView {
 
     private let appearance = Appearance(); struct Appearance {
         let barButtonImageViewInset: CGFloat = 6.0
+        let backBarButtonImage = WOLResources.Asset.Assets.back.image.with(
+            tintColor: WOLResources.Asset.Colors.lightGray.color
+        )
+        let backBarButtonSize: CGFloat = 32.0
     }
 
     // MARK: - Properties
@@ -28,16 +32,15 @@ final class AboutScreenView: UIView {
     weak var delegate: AboutScreenViewDelegate?
 
     lazy var backBarButton: UIBarButtonItem = {
-        let button = SoftUIView(circleShape: true)
-        let image = WOLResources.Asset.Assets.back.image.with(tintColor: WOLResources.Asset.Colors.lightGray.color)
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView(image: appearance.backBarButtonImage)
         imageView.contentMode = .scaleAspectFit
+        let button = SoftUIView(circleShape: true)
         button.configure(with: SoftUIViewModel(contentView: imageView))
         imageView.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(appearance.barButtonImageViewInset)
         }
         button.snp.makeConstraints { make in
-            make.size.equalTo(32)
+            make.size.equalTo(appearance.backBarButtonSize)
         }
         button.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
 

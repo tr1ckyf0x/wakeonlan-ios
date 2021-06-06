@@ -13,7 +13,7 @@ public final class AboutScreenConfigurator {
     public init() { }
 
     public func configure(viewController: AboutScreenViewController) {
-        let presenter = AboutScreenPresenter<AboutScreenRouter>()
+        let presenter = AboutScreenPresenter()
         let interactor = AboutScreenInteractor()
         let router = AboutScreenRouter()
         let tableManager = AboutScreenTableManager()

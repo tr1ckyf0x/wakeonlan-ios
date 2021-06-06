@@ -7,17 +7,31 @@
 //
 
 import Foundation
-import SharedExtensions
+import WOLResources
 
 final class AboutScreenInteractor {
 
+    // MARK: - Properties
+
     weak var presenter: AboutScreenInteractorOutput?
+
+    private let bundleInfoProvider: ProvidesBundleInfo
+
+    init(bundleInfoProvider: ProvidesBundleInfo = BundleInfoProvider()) {
+        self.bundleInfoProvider = bundleInfoProvider
+    }
 
 }
 
 // MARK: - AboutScreenInteractorInput
+
 extension AboutScreenInteractor: AboutScreenInteractorInput {
-    var appVersion: String? {
-        Bundle.main.appVersion
+
+    func fetchBundleInfo() {
+        bundleInfoProvider.fetchBundleInfo { [weak self] info in
+            guard let self = self else { return }
+            self.presenter?.interactor(self, didFetchBundleInfo: info)
+        }
     }
+
 }

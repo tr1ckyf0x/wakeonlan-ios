@@ -14,10 +14,10 @@ import WOLUIComponents
 final class MenuButtonTableCell: UITableViewCell {
 
     private lazy var buttonBodyView: SoftUIView = {
-        let view = SoftUIView()
+        let view = SoftUIView(circleShape: true)
         view.configure(with: SoftUIViewModel(contentView: buttonTitleLabel))
-        view.type = .pushButton
         view.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
+
         return view
     }()
 
@@ -25,6 +25,7 @@ final class MenuButtonTableCell: UITableViewCell {
         let label = UILabel()
         label.font = WOLResources.FontFamily.Roboto.bold.font(size: 14)
         label.textColor = WOLResources.Asset.Colors.lightGray.color
+        label.layer.cornerRadius = 30
         return label
     }()
 
@@ -47,6 +48,7 @@ final class MenuButtonTableCell: UITableViewCell {
 }
 
 // MARK: - Internal methods
+
 extension MenuButtonTableCell {
     func configure(title: String, action: @escaping () -> Void) {
         buttonTitleLabel.text = title
@@ -55,6 +57,7 @@ extension MenuButtonTableCell {
 }
 
 // MARK: - Private methods
+
 private extension MenuButtonTableCell {
     func setupViews() {
         contentView.backgroundColor = WOLResources.Asset.Colors.soft.color
